@@ -75,10 +75,24 @@ class Player:
         return player_act
         
     def make_action(self, action, PokerGame):
-        #     Call (match the highest bet)
-        #     Raise (increase the highest bet)
-        #     Stay (leave the highest bet where it is)
-        #     Fold (forfeit the round)if
+        #     Call 
+        #       find the difference between the PokerGame.highest_bet and player.current_bet[0]
+        #       subtract the result from player.current_cash
+        #       and add the result to player.current_bet[0] and pokergame.pot
+        #
+        #     Raise 
+        #       ask for input on how much they would like to raise the highest_bet by
+        #             (screen input)
+        #       add this amount to the PokerGame.highest_bet and PokerGame.pot
+        #       remove (PokerGame.highest_bet - current_bet[0]) from player.current_cash
+        #       increase current_bet[0] to match highest_bet
+        #
+        #     Stay 
+        #       leave the everything as is
+        #       
+        #     Fold 
+        #       change current_bet[1] to "F"
+        #
         pass
         
         
@@ -89,7 +103,7 @@ class PokerGame:
         self.players = [Player(input("Input Player" + (num+1) + "'s Name: ")) for num in range(num_of_players)]
         self.highest_bet = 0
         self.round = 0
-        self.pot = 0
+        self.pot = 0  # the sum of all player's bets that goes to the winner at the end of the hand
         
    
         
