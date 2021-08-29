@@ -83,8 +83,8 @@ class Player:
         #     Raise 
         #       ask for input on how much they would like to raise the highest_bet by
         #             (screen input)
-        #       add this amount to the PokerGame.highest_bet and PokerGame.pot
-        #       remove (PokerGame.highest_bet - current_bet[0]) from player.current_cash
+        #       add this amount to the PokerGame.highest_bet 
+        #       remove (PokerGame.highest_bet - current_bet[0]) from player.current_cash and add it to PokerGame.pot
         #       increase current_bet[0] to match highest_bet
         #
         #     Stay 
@@ -118,8 +118,8 @@ class Player:
                 #     Raise 
         #       ask for input on how much they would like to raise the highest_bet by
         #             (screen input)
-        #       add this amount to the PokerGame.highest_bet and PokerGame.pot
-        #       remove (PokerGame.highest_bet - current_bet[0]) from player.current_cash
+        #       add this amount to the PokerGame.highest_bet 
+        #       remove (PokerGame.highest_bet - current_bet[0]) from player.current_cash and add it to PokerGame.pot
         #       increase current_bet[0] to match highest_bet
         pass
     def __stay(self, action, PokerGame):
