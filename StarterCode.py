@@ -57,7 +57,7 @@ class Player:
                     if player_act not in ["C", "R", "F"]:
                         raise ValueError
                     valid_act = True
-                 except ValueError:
+                except ValueError:
                     print("Invalid action. Try again.")
         
         #if their current bet matches the highest_bet
@@ -69,7 +69,7 @@ class Player:
                     if player_act not in ["S", "R", "F"]:
                         raise ValueError
                     valid_act = True
-                 except ValueError:
+                except ValueError:
                     print("Invalid action. Try again.")      
        
         return player_act
@@ -93,9 +93,43 @@ class Player:
         #     Fold 
         #       change current_bet[1] to "F"
         #
+        if(action=="C"):
+            self.__call(PokerGame)
+        #elif(action=="R")
+        #   self.__raise(PokerGame)
+        #elif(action == "S")
+        #   self.__stay(PokerGame)
+        #else
+        #   self.__fold(PokerGame)
+        
+    
+    #private helper method to call within make_action method
+    def __call(self, PokerGame):
+        #     Call 
+        #       find the difference between the PokerGame.highest_bet and player.current_bet[0]
+        #       subtract the result from player.current_cash
+        #       and add the result to player.current_bet[0] and pokergame.pot
+        result = PokerGame.highest_bet - self.current_bet[0]
+        self.current_cash -= result
+        self.current_bet[0] += result
+        PokerGame.pot += result
+
+    def __raise(self, action, PokerGame):
+                #     Raise 
+        #       ask for input on how much they would like to raise the highest_bet by
+        #             (screen input)
+        #       add this amount to the PokerGame.highest_bet and PokerGame.pot
+        #       remove (PokerGame.highest_bet - current_bet[0]) from player.current_cash
+        #       increase current_bet[0] to match highest_bet
         pass
-        
-        
+    def __stay(self, action, PokerGame):
+        #     Stay 
+        #       leave the everything as is
+        pass
+    def __fold(self, action, PokerGame):
+        #     Fold 
+        #       change current_bet[1] to "F"
+        pass
 #not sure if this class is sopposed to go in a seperate .py file
 #nor do I know how to do that
 class PokerGame:
