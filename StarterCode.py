@@ -95,41 +95,60 @@ class Player:
         #
         if(action=="C"):
             self.__call(PokerGame)
-        #elif(action=="R")
-        #   self.__raise(PokerGame)
-        #elif(action == "S")
-        #   self.__stay(PokerGame)
-        #else
-        #   self.__fold(PokerGame)
+        elif(action=="R"):
+            self.__raise(PokerGame)
+        elif(action == "S"):
+            return
+        else:
+           self.__fold()
         
     
     #private helper method to call within make_action method
     def __call(self, PokerGame):
-        #     Call 
+        #       Call 
         #       find the difference between the PokerGame.highest_bet and player.current_bet[0]
         #       subtract the result from player.current_cash
         #       and add the result to player.current_bet[0] and pokergame.pot
         result = PokerGame.highest_bet - self.current_bet[0]
+        if self.current_cash - result < 0:
+            print("You don't have enough chips to Call. You have to fold.")
+            self.__fold(self)
+            return
         self.current_cash -= result
         self.current_bet[0] += result
         PokerGame.pot += result
 
-    def __raise(self, action, PokerGame):
-                #     Raise 
+
+    def __raise(self, PokerGame):
+        #       Raise 
         #       ask for input on how much they would like to raise the highest_bet by
         #             (screen input)
         #       add this amount to the PokerGame.highest_bet 
         #       remove (PokerGame.highest_bet - current_bet[0]) from player.current_cash and add it to PokerGame.pot
         #       increase current_bet[0] to match highest_bet
+
+        #Do you have to call before you raise????<---------------###
+        print("Enter how much you would like to raise?")
+        raise_amount = int(input())
+        temp = PokerGame.highest_bet + raise_amount
+        cash_needed = self.current_cash - (temp - current_bet[0])
+        while(cash_needed < 0):
+            print("You don't have enough chips to raise that much. You have " + str(self.current_cash) + " chips.")
+            print("Enter raise amount:")
+            raise_amount = int(input())
+            temp = PokerGame.highest_bet + raise_amount
+        PokerGame.highest_bet += raise_amount
+        self.current_cash -= PokerGame.highest_bet - self.current_bet[0]
+        PokerGame.pot += PokerGame.highest_bet - self.current_bet[0]
+        self.current_bet[0] = PokerGame.highest_bet
+
         pass
-    def __stay(self, action, PokerGame):
-        #     Stay 
-        #       leave the everything as is
-        pass
-    def __fold(self, action, PokerGame):
+
+    def __fold(self):
         #     Fold 
         #       change current_bet[1] to "F"
-        pass
+        self.current_bet[1] = "F"
+
 #not sure if this class is sopposed to go in a seperate .py file
 #nor do I know how to do that
 class PokerGame:
