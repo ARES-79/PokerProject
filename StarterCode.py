@@ -45,13 +45,15 @@ class Player:
         
         #if they have already folded
         if self.current_bet[1] == "F":
-            print(f"{self.name} has already folded. \n")
+            #print(f"{self.name} has already folded. \n")
+            print(self.name + " has already folded")
             return player_act
         
         #if their current bet is less than the highest_bet
         elif self.current_bet[0] < PokerGame.highest_bet:  
             while not valid_act:
-                print(f"{self.name} must Call (C), Raise (R), or Fold (F).")
+                #print(f"{self.name} must Call (C), Raise (R), or Fold (F).")
+                print(self.name + " must Call (C), Raise (R), or Fold (F).")
                 player_act = input("Enter C, R, or F: ")
                 try:
                     if player_act not in ["C", "R", "F"]:
@@ -63,7 +65,8 @@ class Player:
         #if their current bet matches the highest_bet
         elif self.current_bet[0] == PokerGame.highest_bet:
             while not valid_act:
-                print(f"{self.name} must Stay (S), Raise (R), or Fold (F).")
+                #print(f"{self.name} must Stay (S), Raise (R), or Fold (F).")
+                print(self.name + " must Stay (S), Raise (R), or Fold (F).")
                 player_act = input("Enter S, R, or F: ")
                 try:
                     if player_act not in ["S", "R", "F"]:
@@ -151,12 +154,12 @@ class Player:
 
 #not sure if this class is sopposed to go in a seperate .py file
 #nor do I know how to do that
-class PokerGame:
-    def __init__(self, num_of_players):
-        self.players = [Player(input("Input Player" + (num+1) + "'s Name: ")) for num in range(num_of_players)]
-        self.highest_bet = 0
-        self.round = 0
-        self.pot = 0  # the sum of all player's bets that goes to the winner at the end of the hand
+#class PokerGame:
+#    def __init__(self, num_of_players):
+#        self.players = [Player(input("Input Player" + (num+1) + "'s Name: ")) for num in range(num_of_players)]
+#        self.highest_bet = 0
+#        self.round = 0
+#        self.pot = 0  # the sum of all player's bets that goes to the winner at the end of the hand
         
    
         
