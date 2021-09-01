@@ -45,15 +45,13 @@ class Player:
         
         #if they have already folded
         if self.current_bet[1] == "F":
-            #print(f"{self.name} has already folded. \n")
-            print(self.name + " has already folded")
+            print(f"{self.name} has already folded. \n")
             return player_act
         
         #if their current bet is less than the highest_bet
         elif self.current_bet[0] < PokerGame.highest_bet:  
             while not valid_act:
-                #print(f"{self.name} must Call (C), Raise (R), or Fold (F).")
-                print(self.name + " must Call (C), Raise (R), or Fold (F).")
+                print(f"{self.name} must Call (C), Raise (R), or Fold (F).")
                 player_act = input("Enter C, R, or F: ")
                 try:
                     if player_act not in ["C", "R", "F"]:
@@ -65,8 +63,7 @@ class Player:
         #if their current bet matches the highest_bet
         elif self.current_bet[0] == PokerGame.highest_bet:
             while not valid_act:
-                #print(f"{self.name} must Stay (S), Raise (R), or Fold (F).")
-                print(self.name + " must Stay (S), Raise (R), or Fold (F).")
+                print(f"{self.name} must Stay (S), Raise (R), or Fold (F).")
                 player_act = input("Enter S, R, or F: ")
                 try:
                     if player_act not in ["S", "R", "F"]:
@@ -134,7 +131,7 @@ class Player:
         print("Enter how much you would like to raise?")
         raise_amount = int(input())
         temp = PokerGame.highest_bet + raise_amount
-        cash_needed = self.current_cash - (temp - current_bet[0])
+        cash_needed = self.current_cash - (temp - self.current_bet[0])
         while(cash_needed < 0):
             print("You don't have enough chips to raise that much. You have " + str(self.current_cash) + " chips.")
             print("Enter raise amount:")
