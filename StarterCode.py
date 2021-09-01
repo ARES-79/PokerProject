@@ -127,7 +127,6 @@ class Player:
         #       remove (PokerGame.highest_bet - current_bet[0]) from player.current_cash and add it to PokerGame.pot
         #       increase current_bet[0] to match highest_bet
 
-        #Do you have to call before you raise????<---------------###
         print("Enter how much you would like to raise?")
         raise_amount = int(input())
         temp = PokerGame.highest_bet + raise_amount
@@ -151,12 +150,12 @@ class Player:
 
 #not sure if this class is sopposed to go in a seperate .py file
 #nor do I know how to do that
-#class PokerGame:
-#    def __init__(self, num_of_players):
-#        self.players = [Player(input("Input Player" + (num+1) + "'s Name: ")) for num in range(num_of_players)]
-#        self.highest_bet = 0
-#        self.round = 0
-#        self.pot = 0  # the sum of all player's bets that goes to the winner at the end of the hand
+class PokerGame:
+    def __init__(self, num_of_players):
+        self.players = [Player(input("Input Player" + (num+1) + "'s Name: ")) for num in range(num_of_players)]
+        self.highest_bet = 0
+        self.round = 0
+        self.pot = 0  # the sum of all player's bets that goes to the winner at the end of the hand
         
    
         
