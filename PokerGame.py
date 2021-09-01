@@ -46,6 +46,8 @@ class PokerGame:
                 valid_input = True
             except ValueError:
                 print("Invalid winner. Try again.")
+                winner = input("Please input the number to the left of the player's name: ")
+
 
         return val_winner
 

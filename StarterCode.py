@@ -73,26 +73,9 @@ class Player:
                     print("Invalid action. Try again.")      
        
         return player_act
-        
+
+    #function to calls the action chosen
     def make_action(self, action, PokerGame):
-        #     Call 
-        #       find the difference between the PokerGame.highest_bet and player.current_bet[0]
-        #       subtract the result from player.current_cash
-        #       and add the result to player.current_bet[0] and pokergame.pot
-        #
-        #     Raise 
-        #       ask for input on how much they would like to raise the highest_bet by
-        #             (screen input)
-        #       add this amount to the PokerGame.highest_bet 
-        #       remove (PokerGame.highest_bet - current_bet[0]) from player.current_cash and add it to PokerGame.pot
-        #       increase current_bet[0] to match highest_bet
-        #
-        #     Stay 
-        #       leave the everything as is
-        #       
-        #     Fold 
-        #       change current_bet[1] to "F"
-        #
         if(action=="C"):
             self.__call(PokerGame)
         elif(action=="R"):
@@ -141,21 +124,7 @@ class Player:
         PokerGame.pot += PokerGame.highest_bet - self.current_bet[0]
         self.current_bet[0] = PokerGame.highest_bet
 
-        pass
-
     def __fold(self):
         #     Fold 
         #       change current_bet[1] to "F"
         self.current_bet[1] = "F"
-
-#not sure if this class is sopposed to go in a seperate .py file
-#nor do I know how to do that
-class PokerGame:
-    def __init__(self, num_of_players):
-        self.players = [Player(input("Input Player" + (num+1) + "'s Name: ")) for num in range(num_of_players)]
-        self.highest_bet = 0
-        self.round = 0
-        self.pot = 0  # the sum of all player's bets that goes to the winner at the end of the hand
-        
-   
-        
