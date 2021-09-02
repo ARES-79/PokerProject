@@ -12,30 +12,19 @@ class PokerGame:
         self.pot = 0  # the sum of all player's bets that goes to the winner at the end of the hand
 
     def __repr__(self) -> str:
-        s = "\n"
-        s += '%-12s%-12s%-12s' % ("Player", "Cash", "Bet")
-        s += "\n-----------------------------\n"
+        s = "\n Player:    "
         for player in self.players:
-            s += str(player) + "\n"
-        s += "-----------------------------\n"
-        s += '%-25s%-12i' % ("Total Pot:", self.pot)
+            s += player.name + "     "
+        s += "\n Cash:      "
+        for player in self.players:
+            s += str(player.current_cash) + "     "
+        s += "\n Bet:       "
+        for player in self.players:
+            s += str(player.current_bet) + "     "
+        s+= "\n"
         return s
-        
-        # s = "\n Player:    "
-        # for player in self.players:
-        #     s += player.name + "     "
-        # s += "\n Cash:      "
-        # for player in self.players:
-        #     s += str(player.current_cash) + "     "
-        # s += "\n Bet:       "
-        # for player in self.players:
-        #     s += str(player.current_bet) + "     "
-        # s+= "\n"
-        # return s
         #currently a poor excuse for a table of values
         #would like to go back and perfect this using strng formating
-        
-        #method to apply table output
     def table(self) -> list:
         table = [[player.name, player.current_cash, player.current_bet] for player in self.players]
         return table
@@ -56,18 +45,7 @@ class PokerGame:
         while not valid_input:
             try:
                 val_winner = int(winner)
-<<<<<<< HEAD
                 if val_winner < 0 or val_winner > len(self.players):
-=======
-
-                if val_winner < 0 or val_winner > len(self.players):
-
-                if val_winner <= 0 or val_winner > len(self.players) \
-                     or self.players[val_winner -1].current_bet[1] == "F":
-                    #must be a number matching a player
-                    #the player must not have folded
-
->>>>>>> 1be1d5481d4d09b95aa4ed9a6c0037ecce067579
                     raise ValueError
                 valid_input = True
             except ValueError:
