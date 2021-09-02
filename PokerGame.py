@@ -50,7 +50,7 @@ class PokerGame:
             try:
                 val_winner = int(winner)
                 if val_winner <= 0 or val_winner > len(self.players) \
-                     or self.players[val_winner +1].current_bet[1] == "F":
+                     or self.players[val_winner -1].current_bet[1] == "F":
                     #must be a number matching a player
                     #the player must not have folded
                     raise ValueError
