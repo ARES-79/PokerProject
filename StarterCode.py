@@ -84,7 +84,7 @@ class Player:
             self.__call(PokerGame)
         elif(action=="R"):
             self.__raise(PokerGame)
-        elif(action == "S"):
+        elif(action == "S" or action is None):
             return
         else:
            self.__fold()
