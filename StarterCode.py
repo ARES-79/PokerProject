@@ -33,6 +33,10 @@ class Player:
         self.current_bet = [0, "B"] 
           # index 0 for bet amount
           #index 1 for whether they continue betting "B" or stop betting "F"
+
+    def __repr__(self) -> str:
+        return '%-13s%-12i%-12s' % (self.name, self.current_cash, str(self.current_bet[0]) \
+                    if self.current_bet[1] =="B" else f"Folded ({self.current_bet[0]})")
         
     def get_action(self, PokerGame):
         #     Call (match the highest bet)
@@ -128,3 +132,6 @@ class Player:
         #     Fold 
         #       change current_bet[1] to "F"
         self.current_bet[1] = "F"
+
+
+#print(Player("Bob"))
