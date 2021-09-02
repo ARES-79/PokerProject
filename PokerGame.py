@@ -1,4 +1,6 @@
 from StarterCode import Player
+from tabulate import tabulate
+
 import time 
 
 class PokerGame:
@@ -32,6 +34,11 @@ class PokerGame:
         # return s
         #currently a poor excuse for a table of values
         #would like to go back and perfect this using strng formating
+        
+        #method to apply table output
+    def table(self) -> list:
+        table = [[player.name, player.current_cash, player.current_bet] for player in self.players]
+        return table
 
     def bets_match(self) -> bool:
         for player in self.players:
@@ -49,10 +56,14 @@ class PokerGame:
         while not valid_input:
             try:
                 val_winner = int(winner)
+
+                if val_winner < 0 or val_winner > len(self.players):
+
                 if val_winner <= 0 or val_winner > len(self.players) \
                      or self.players[val_winner -1].current_bet[1] == "F":
                     #must be a number matching a player
                     #the player must not have folded
+
                     raise ValueError
                 valid_input = True
             except ValueError:
@@ -96,7 +107,8 @@ def game_start():
 
 def game_play(game):
     time.sleep(1)
-    print(game)
+    #print(game)
+    print(tabulate(game.table(), headers=["Name", "Players Chips", "Players Bet"], tablefmt="grid"))
     keep_playing = True
     while keep_playing:
         print(f"\nRound {game.round % 3 +1} of betting - ")
@@ -106,13 +118,14 @@ def game_play(game):
         while not bets_match:
             for player in game.players:
                 player.make_action(player.get_action(game), game)
-                print(game)
+                print(tabulate(game.table(), headers=["Name", "Players Chips", "Players Bet"], tablefmt="grid"))
             bets_match = game.bets_match()
         if game.round % 3 == 2:
             print("Betting has ended.")
             game.players[game.winners_pot()-1].current_cash += game.pot
             game.reset()
-            print(game)
+            #print(game)
+            print(tabulate(game.table(), headers=["Name", "Players Chips", "Players Bet"], tablefmt="grid"))
             if input("Would you like to continue playing? (Y) Yes (N) No\n") == "N":
                 keep_playing = False
         game.round += 1
